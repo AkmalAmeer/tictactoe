@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #f8c291, #6a89cc);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-container {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+.cell {
+    width: 100%;
+    padding-top: 100%;
+    /* Makes the cells responsive and square */
+    background-color: #f1f2f6;
+    border: 3px solid #2c3e50;
+    font-size: 2rem;
+    color: #2c3e50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cell.active {
+    pointer-events: none;
+}
+
+.cell.X {
+    background-color: #ff6b6b;
+    /* Red for X's turn */
+    color: #fff;
+    animation: xEffect 0.5s forwards;
+}
+
+.cell.O {
+    background-color: #74b9ff;
+    /* Blue for O's turn */
+    color: #fff;
+    animation: oEffect 0.5s forwards;
+}
+
+@keyframes xEffect {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes oEffect {
+    0% {
+        transform: rotate(0deg) scale(0);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+.status {
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+    margin-bottom: 20px;
+}
+
+.start-btn,
+.restart-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #2c3e50;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.start-btn:hover,
+.restart-btn:hover {
+    background-color: #f39c12;
+}
+
+.winning-line {
+    background-color: rgba(255, 255, 0, 0.7);
+    transition: background-color 0.5s ease;
+}
+
+.strike-line {
+    position: absolute;
+    height: 5px;
+    background-color: yellow;
+    z-index: 1;
+    transform-origin: left;
+    transition: all 0.5s ease;
+}
+
+/* Adjustments for different screen sizes */
+@media (max-width: 600px) {
+    .strike-line {
+        height: 3px;
+    }
+}
